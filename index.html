@@ -9,7 +9,6 @@
       rel="stylesheet"
     />
     <style>
-      /* Custom animations */
       @keyframes slideDown {
         from {
           opacity: 0;
@@ -20,143 +19,173 @@
           transform: translateY(0);
         }
       }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
       .animate-slide-down {
         animation: slideDown 0.6s ease-out forwards;
       }
+
+      .animate-slide-in-right {
+        animation: slideInRight 0.5s ease-out forwards;
+      }
+
+      #response {
+        display: none;
+      }
     </style>
   </head>
-  <body class="bg-neutral-100 flex items-center justify-center min-h-screen">
+  <body class="bg-neutral-100 flex items-center justify-center h-full py-24">
     <div
-      class="w-full max-w-md p-8 bg-white shadow-lg rounded-lg animate-slide-down"
+      id="container"
+      class="flex flex-col md:flex-row items-start justify-center w-[75%] mx-8 md:space-x-4"
     >
-      <h2 class="text-3xl font-semibold text-neutral-800 text-center mb-6">
-        Sports Details Form
-      </h2>
+      <div
+        class="w-full m-4 p-8 bg-white shadow-lg rounded-lg animate-slide-down"
+      >
+        <h2 class="text-3xl font-semibold text-neutral-800 text-center mb-6">
+          AI-based Diet plans depending on your Sports Activity
+        </h2>
 
-      <form id="sportsForm">
-        <!-- Type of Sport -->
-        <div class="mb-6">
-          <label for="sport" class="block text-neutral-700 font-medium mb-2"
-            >Type of Sport</label
-          >
-          <select
-            id="sport"
-            name="sport"
-            class="w-full px-4 py-3 border border-neutral-300 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-md"
-          >
-            <option value="" disabled selected>Select a sport</option>
-            <option value="soccer">Soccer</option>
-            <option value="basketball">Basketball</option>
-            <option value="tennis">Tennis</option>
-            <option value="swimming">Swimming</option>
-            <option value="running">Running</option>
-          </select>
-        </div>
-
-        <!-- Duration of Sport -->
-        <div class="mb-6">
-          <label for="duration" class="block text-neutral-700 font-medium mb-2"
-            >Duration (minutes)</label
-          >
-          <input
-            type="number"
-            id="duration"
-            name="duration"
-            min="1"
-            class="w-full px-4 py-3 border border-neutral-300 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-md"
-            placeholder="Enter duration"
-          />
-        </div>
-
-        <!-- Gender -->
-        <div class="mb-6">
-          <label class="block text-neutral-700 font-medium mb-2">Gender</label>
-          <div class="flex items-center space-x-6">
-            <label class="inline-flex items-center">
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                class="form-radio text-green-500 focus:ring-0"
-              />
-              <span class="ml-2 text-neutral-700">Male</span>
-            </label>
-            <label class="inline-flex items-center">
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                class="form-radio text-green-500 focus:ring-0"
-              />
-              <span class="ml-2 text-neutral-700">Female</span>
-            </label>
-            <label class="inline-flex items-center">
-              <input
-                type="radio"
-                name="gender"
-                value="other"
-                class="form-radio text-green-500 focus:ring-0"
-              />
-              <span class="ml-2 text-neutral-700">Other</span>
-            </label>
+        <form id="sportsForm">
+          <div class="mb-6">
+            <label for="sport" class="block text-neutral-700 font-medium mb-2"
+              >Type of Sport</label
+            >
+            <select
+              id="sport"
+              name="sport"
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-md"
+            >
+              <option value="" disabled selected>Select a sport</option>
+              <option value="soccer">Soccer</option>
+              <option value="basketball">Basketball</option>
+              <option value="tennis">Tennis</option>
+              <option value="swimming">Swimming</option>
+              <option value="running">Running</option>
+            </select>
           </div>
-        </div>
 
-        <!-- Age -->
-        <div class="mb-8">
-          <label for="age" class="block text-neutral-700 font-medium mb-2"
-            >Age</label
+          <div class="mb-6">
+            <label
+              for="duration"
+              class="block text-neutral-700 font-medium mb-2"
+              >Duration (minutes)</label
+            >
+            <input
+              type="number"
+              id="duration"
+              name="duration"
+              min="1"
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-md"
+              placeholder="Enter duration"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-neutral-700 font-medium mb-2"
+              >Gender</label
+            >
+            <div class="flex items-center space-x-6">
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  class="form-radio text-green-500 focus:ring-0"
+                />
+                <span class="ml-2 text-neutral-700">Male</span>
+              </label>
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  class="form-radio text-green-500 focus:ring-0"
+                />
+                <span class="ml-2 text-neutral-700">Female</span>
+              </label>
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="other"
+                  class="form-radio text-green-500 focus:ring-0"
+                />
+                <span class="ml-2 text-neutral-700">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <label for="age" class="block text-neutral-700 font-medium mb-2"
+              >Age</label
+            >
+            <input
+              type="number"
+              id="age"
+              name="age"
+              min="1"
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-md"
+              placeholder="Enter age"
+            />
+          </div>
+
+          <button
+            type="button"
+            onclick="submitForm()"
+            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
-          <input
-            type="number"
-            id="age"
-            name="age"
-            min="1"
-            class="w-full px-4 py-3 border border-neutral-300 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-md"
-            placeholder="Enter age"
-          />
-        </div>
+            Submit
+          </button>
+        </form>
+      </div>
 
-        <!-- Submit Button -->
-        <button
-          type="button"
-          onclick="submitForm()"
-          class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-        >
-          Submit
-        </button>
-      </form>
-
-      <!-- Response Div -->
-      <div id="response" class="mt-6 text-neutral-700 font-medium"></div>
+      <div
+        id="response"
+        class="w-full h-full bg-green-50 shadow-lg rounded-lg p-8 m-4 text-neutral-700 font-medium animate-slide-in-right"
+      ></div>
     </div>
 
     <script>
       async function submitForm() {
-        const form = document.getElementById('sportsForm');
+        const form = document.getElementById("sportsForm");
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
-        const responseDiv = document.getElementById('response');
-        responseDiv.innerText = 'Generating hints...';
+        const responseDiv = document.getElementById("response");
+        responseDiv.innerText = "Fetching the results";
+        responseDiv.style.display = "block";
 
         try {
-          const response = await fetch('http://localhost:3000/getHints', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          });
+          const response = await fetch(
+            "https://sports-ai-backend.onrender.com/getHints",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }
+          );
 
           if (response.ok) {
             const result = await response.json();
-            responseDiv.innerText = result.hint;
+            responseDiv.innerHTML = result.hint;
           } else {
-            responseDiv.innerText = 'Error generating hints.';
+            responseDiv.innerText = "Error generating hints.";
           }
         } catch (error) {
-          responseDiv.innerText = 'Network error.';
+          responseDiv.innerText = "Network error.";
         }
       }
     </script>
